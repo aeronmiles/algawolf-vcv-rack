@@ -1,0 +1,47 @@
+{
+  "slug": "ALGAW0LF",
+  "name": "ALGAW0LF",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "brand": "ALGAW0LF",
+  "author": "Aeron Miles",
+  "authorEmail": "",
+  "authorUrl": "",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "PolyADSR",
+      "name": "PolyADSR",
+      "description": "",
+      "tags": []
+    },
+    {
+      "slug": "Orbit",
+      "name": "Orbit",
+      "description": "",
+      "tags": []
+    },
+    {
+      "slug": "PolyVolt",
+      "name": "PolyVolt",
+      "description": "",
+      "tags": []
+    },
+    {
+      "slug": "Strum",
+      "name": "Strum",
+      "description": "",
+      "tags": []
+    },
+    {
+      "slug": "BlankW0lf",
+      "name": "BlankW0lf",
+      "description": "",
+      "tags": []
+    }
+  ]
+}
