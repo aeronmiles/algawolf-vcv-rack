@@ -53,10 +53,6 @@ struct PolyADSR : Module
 	float_4 releaseLambda[4] = {0.f};
 	float_4 sustain[4] = {0.f};
 	dsp::ClockDivider lightDivider;
-	CVParam cv_attack;
-	CVParam cv_decay;
-	CVParam cv_sustain;
-	CVParam cv_release;
 
 	PolyADSR()
 	{
@@ -70,11 +66,6 @@ struct PolyADSR : Module
 		configParam(DECAY_AV_PARAM, -1.f, 1.f, 0.f, "Decay CV Attenuverter");
 		configParam(SUSTAIN_AV_PARAM, -1.f, 1.f, 0.f, "Sustain CV Attenuverte");
 		configParam(RELEASE_AV_PARAM, -1.f, 1.f, 0.f, "Release CV Attenuverter");
-		
-        cv_attack.setCVParam(&params[ATTACK_PARAM], &params[ATTACK_AV_PARAM], &inputs[ATTACK_CV_INPUT], 0.f, 1.f);
-        cv_decay.setCVParam(&params[DECAY_PARAM], &params[DECAY_AV_PARAM], &inputs[DECAY_CV_INPUT], 0.f, 1.f);
-        cv_sustain.setCVParam(&params[SUSTAIN_PARAM], &params[SUSTAIN_AV_PARAM], &inputs[SUSTAIN_CV_INPUT], 0.f, 1.f);
-        cv_release.setCVParam(&params[RELEASE_PARAM], &params[RELEASE_AV_PARAM], &inputs[RELEASE_CV_INPUT], 0.f, 1.f);
 
 		cvDivider.setDivision(16);
 		lightDivider.setDivision(128);
@@ -95,14 +86,18 @@ struct PolyADSR : Module
 			float decayParam = params[DECAY_PARAM].getValue();
 			float sustainParam = params[SUSTAIN_PARAM].getValue();
 			float releaseParam = params[RELEASE_PARAM].getValue();
+			float attackAV = params[ATTACK_AV_PARAM].getValue();
+			float decayAV = params[DECAY_AV_PARAM].getValue();
+			float sustainAV = params[SUSTAIN_AV_PARAM].getValue();
+			float releaseAV = params[RELEASE_AV_PARAM].getValue();
 
 			for (int c = 0; c < channels; c += 4)
 			{
 				// CV
-				float_4 attack = attackParam + inputs[ATTACK_CV_INPUT].getPolyVoltageSimd<float_4>(c) / 10.f;
-				float_4 decay = decayParam + inputs[DECAY_CV_INPUT].getPolyVoltageSimd<float_4>(c) / 10.f;
-				float_4 sustain = sustainParam + inputs[SUSTAIN_CV_INPUT].getPolyVoltageSimd<float_4>(c) / 10.f;
-				float_4 release = releaseParam + inputs[RELEASE_CV_INPUT].getPolyVoltageSimd<float_4>(c) / 10.f;
+				float_4 attack = attackParam + (inputs[ATTACK_CV_INPUT].getPolyVoltageSimd<float_4>(c) * attackAV) / 10.f;
+				float_4 decay = decayParam + (inputs[DECAY_CV_INPUT].getPolyVoltageSimd<float_4>(c) * decayAV) / 10.f;
+				float_4 sustain = sustainParam + (inputs[SUSTAIN_CV_INPUT].getPolyVoltageSimd<float_4>(c) * sustainAV) / 10.f;
+				float_4 release = releaseParam + (inputs[RELEASE_CV_INPUT].getPolyVoltageSimd<float_4>(c) * releaseAV) / 10.f;
 
 				attack = simd::clamp(attack, 0.f, 1.f);
 				decay = simd::clamp(decay, 0.f, 1.f);

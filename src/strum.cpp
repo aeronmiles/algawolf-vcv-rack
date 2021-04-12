@@ -53,7 +53,7 @@ void Strum::process(const ProcessArgs &args)
 		}
 	}
 
-	// NEXT STATE
+	// PREVIOUS STATE
 	m_alternate = !m_alternate;
 	m_previousGateVoltage = m_gateVoltage;
 	m_time = m_time + m_sampleTime;
@@ -174,6 +174,7 @@ inline void Strum::cvPlaySeq()
 	}
 }
 
+// TODO : optimize repeats, allow additional repeats
 inline void Strum::addSeqNotes()
 {
 	if (m_previousGateVoltage != 0.f || m_gateVoltage != 10.f || m_noteCount == 0)
@@ -489,7 +490,7 @@ inline void Strum::checkMutes()
 	}
 }
 
-// also called from KNOTE KnobEvents
+// also called from NOTE KnobEvents in strum.hpp
 inline void Strum::updateQuantizerNotes()
 {
 	for (int i = 0; i < 24; i++)
@@ -516,7 +517,7 @@ inline void Strum::updateQuantizerNotes()
 	}
 }
 
-// also called from KNOTE KnobEvents
+// also called from NOTE KnobEvents in strum.hpp
 inline void Strum::quantize()
 {
 	if (!m_quantize)
@@ -539,6 +540,7 @@ inline void Strum::quantize()
 inline void Strum::setParams()
 {
 	// set note offsets
+	// if connected, note offsets are updated in cvAddSeqNotes / addSeqNotes
 	if (inputs[OFFSET_CV_INPUT].isConnected())
 	{
 		for (int i = 0; i < 8; i++)
@@ -553,7 +555,9 @@ inline void Strum::setParams()
 			m_notes[i].delayOffset = params[DELAYOFFSET_PARAM + i].getValue();
 		}
 	}
-	// set note cv
+	
+	// set note cv values
+	// if connected, note cv values are updated in cvAddSeqNotes / addSeqNotes
 	if (inputs[X_CV_INPUT].isConnected())
 	{
 		for (int i = 0; i < 8; i++)
@@ -569,6 +573,7 @@ inline void Strum::setParams()
 		}
 	}
 
+	// set notes
 	for (int i = 0; i < 8; i++)
 	{
 		m_notes[i].voltage = params[NOTE_PARAM + i].getValue();
