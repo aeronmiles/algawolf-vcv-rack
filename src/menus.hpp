@@ -5,7 +5,7 @@
 
 using namespace rack;
 
-namespace algaw0lf
+namespace algawolf
 {
 
     struct LambdaMenuItem : MenuItem

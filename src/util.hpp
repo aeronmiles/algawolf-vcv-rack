@@ -3,7 +3,7 @@
 #include "rack.hpp"
 #include <cfloat>
 
-namespace algaw0lf::util
+namespace algawolf::util
 {
 
     inline float addCv(Param *knob, Param *attenuverter, Input *cv)

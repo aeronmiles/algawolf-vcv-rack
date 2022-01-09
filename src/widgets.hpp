@@ -8,7 +8,7 @@ using namespace rack;
 
 extern Plugin *pluginInstance;
 
-namespace algaw0lf
+namespace algawolf
 {
 
 	// BUTTONS

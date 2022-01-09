@@ -1,4 +1,4 @@
-#include "algaw0lf.hpp"
+#include "algawolf.hpp"
 
 using namespace simd;
 
@@ -6,7 +6,7 @@ const float MIN_TIME = 1e-3f;
 const float MAX_TIME = 10.f;
 const float LAMBDA_BASE = MAX_TIME / MIN_TIME;
 
-struct PolyADSR : Module
+struct PolyADSR : WolfModule
 {
 	enum ParamIds
 	{
@@ -169,7 +169,7 @@ struct PolyADSR : Module
 	}
 };
 
-struct ADSRWidget : ModuleWidget
+struct ADSRWidget : WolfModuleWidget
 {
 	ADSRWidget(PolyADSR *module)
 	{

@@ -1,13 +1,13 @@
 {
-  "slug": "ALGAW0LF",
-  "name": "ALGAW0LF",
+  "slug": "ALGAWOLF",
+  "name": "ALGAWOLF",
   "version": "1.0.0",
   "license": "proprietary",
-  "brand": "ALGAW0LF",
+  "brand": "ALGAWOLF",
   "author": "Aeron Miles",
-  "authorEmail": "algaw0lf@protonmail.com",
+  "authorEmail": "algawolf@protonmail.com",
   "authorUrl": "",
-  "pluginUrl": "algaw0lf.github.io/vcv",
+  "pluginUrl": "algawolf.github.io/vcv",
   "manualUrl": "",
   "sourceUrl": "",
   "donateUrl": "",
@@ -38,8 +38,8 @@
       "tags": []
     },
     {
-      "slug": "BlankW0lf",
-      "name": "BlankW0lf",
+      "slug": "BlankWolf",
+      "name": "BlankWolf",
       "description": "",
       "tags": []
     }

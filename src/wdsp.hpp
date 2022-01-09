@@ -1,6 +1,6 @@
 #pragma once
 
-namespace algaw0lf::wdsp
+namespace algawolf::wdsp
 {
     struct RiseTrigger
     {

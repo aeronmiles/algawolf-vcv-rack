@@ -4,17 +4,17 @@
 using namespace rack;
 using namespace simd;
 
-namespace algaw0lf
+namespace algawolf
 {
 
-	struct W0lfModule : Module
+	struct WolfModule : Module
 	{
 		// RefreshCounter refresh;
 		int m_channelCount = 8;
 		void setChannels();
 	};
 
-	struct W0lfModuleWidget : ModuleWidget
+	struct WolfModuleWidget : ModuleWidget
 	{
 	};
 

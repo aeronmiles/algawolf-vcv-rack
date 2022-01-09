@@ -1,10 +1,10 @@
 #pragma once
 
-#include "algaw0lf.hpp"
+#include "algawolf.hpp"
 
 extern Model *modelStrum;
 
-struct Strum : W0lfModule
+struct Strum : WolfModule
 {
     enum ParamIds
     {
@@ -426,7 +426,7 @@ struct NoteIntervalsItem : MenuItem
     }
 };
 
-struct StrumWidget : W0lfModuleWidget
+struct StrumWidget : WolfModuleWidget
 {
     const float leftPadding = 1.35f;
     const float rightPadding = leftPadding * 3.f;
@@ -442,12 +442,6 @@ struct StrumWidget : W0lfModuleWidget
         addOutputs();
         addLeds();
         addKnobs(module);
-    }
-
-    void onNoteChanged()
-    {
-        if (module->m_quantize)
-            module->quantize();
     }
 
     void appendContextMenu(Menu *menu) override
@@ -490,37 +484,37 @@ struct StrumWidget : W0lfModuleWidget
         menu->addChild(construct<MenuLabel>(&MenuLabel::text, "Quantize Scales"));
         LambdaMenuItem *chromatic = new LambdaMenuItem(
             "Chromatic",
-            [module]() { module->m_scale = scales::CHROMATIC; },
+            [module]() { module->m_scale = scales::CHROMATIC; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::CHROMATIC; });
         menu->addChild(chromatic);
 
         LambdaMenuItem *major = new LambdaMenuItem(
             "Major",
-            [module]() { module->m_scale = scales::MAJOR; },
+            [module]() { module->m_scale = scales::MAJOR; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::MAJOR; });
         menu->addChild(major);
 
         LambdaMenuItem *minor = new LambdaMenuItem(
             "Minor",
-            [module]() { module->m_scale = scales::MINOR; },
+            [module]() { module->m_scale = scales::MINOR; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::MINOR; });
         menu->addChild(minor);
 
         LambdaMenuItem *harmMinor = new LambdaMenuItem(
             "Harmonic Minor",
-            [module]() { module->m_scale = scales::HARMONIC_MINOR; },
+            [module]() { module->m_scale = scales::HARMONIC_MINOR; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::HARMONIC_MINOR; });
         menu->addChild(harmMinor);
 
         LambdaMenuItem *blues = new LambdaMenuItem(
             "Blues",
-            [module]() { module->m_scale = scales::BLUES; },
+            [module]() { module->m_scale = scales::BLUES; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::BLUES; });
         menu->addChild(blues);
 
         LambdaMenuItem *pentatonic = new LambdaMenuItem(
             "Pentatonic",
-            [module]() { module->m_scale = scales::PENTATONIC; },
+            [module]() { module->m_scale = scales::PENTATONIC; module->updateQuantizerNotes(); },
             [module]() { return module->m_scale == scales::PENTATONIC; });
         menu->addChild(pentatonic);
     }

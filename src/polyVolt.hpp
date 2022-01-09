@@ -1,10 +1,10 @@
 #pragma once
 
-#include "algaw0lf.hpp"
+#include "algawolf.hpp"
 
 extern Model *modelPolyVolt;
 
-struct PolyVolt : W0lfModule
+struct PolyVolt : WolfModule
 {
 	enum ParamIds
 	{
@@ -45,7 +45,7 @@ struct PolyVolt : W0lfModule
 	void process(const ProcessArgs &args) override;
 };
 
-struct PolyVoltWidget : ModuleWidget
+struct PolyVoltWidget : WolfModuleWidget
 {
 	PolyVoltWidget(PolyVolt *module)
 	{

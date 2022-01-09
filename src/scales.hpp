@@ -1,6 +1,6 @@
 #pragma once
 
-namespace algaw0lf::scales
+namespace algawolf::scales
 {
 
     struct Scale

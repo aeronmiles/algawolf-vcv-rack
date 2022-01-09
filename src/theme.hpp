@@ -2,7 +2,7 @@
 
 #include <color.hpp>
 
-namespace algaw0lf::theme
+namespace algawolf::theme
 {
     // colors
     static const NVGcolor W0LF_CYAN = nvgRGB(0x22, 0xe6, 0xef);

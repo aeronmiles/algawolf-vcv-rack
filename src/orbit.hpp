@@ -1,10 +1,10 @@
 #pragma once
 
-#include "algaw0lf.hpp"
+#include "algawolf.hpp"
 
 extern Model *modelOrbit;
 
-struct Orbit : W0lfModule
+struct Orbit : WolfModule
 {
     enum ParamIds
     {
@@ -53,7 +53,7 @@ struct Orbit : W0lfModule
     void process(const ProcessArgs &args) override;
 };
 
-struct OrbitWidget : W0lfModuleWidget
+struct OrbitWidget : WolfModuleWidget
 {
     ParamWidget *knobs[4];
     Widget *highlights[4];

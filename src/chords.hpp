@@ -1,6 +1,6 @@
 #pragma once
 
-namespace algaw0lf::chords
+namespace algawolf::chords
 {
     struct Chord
     {
